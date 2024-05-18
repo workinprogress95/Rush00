@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-
-void WriteRow(int col, int isLast, int row)
+void WriteRow(int col, int isLast)
 {
     char edge = isLast > 0 ? 'C' : 'A';
     int i = 0;
@@ -14,7 +13,6 @@ void WriteRow(int col, int isLast, int row)
         else write(1, "B", 1);
         i++;
     }
-    if (isLast == 0 && row > 1) write(1, "\n", 1);
 }
 void WriteCol(int col)
 {
@@ -34,24 +32,21 @@ void WriteCol(int col)
 
 void rush(int col, int row)
 {
+    if (col <= 0 || row <= 0) return;
     int i = 0;
     while (i < row)
     {
-        if (i == 0)
+        if (i == 0 || i == row - 1)
         {
-            WriteRow(col, i, row);
-        }
-        else if (i == row - 1)
-        {
-            WriteRow(col, i, row);
+            WriteRow(col, i);
+            if (i == 0 && row > 1) write(1, "\n", 1);
         }
         else WriteCol(col);
         i++;
     }
-
 }
 int main()
 {
-    rush(4, 4);
+    rush(5, 0);
     return 0;
 }
