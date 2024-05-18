@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <unistd.h>
 
 void WriteRow(int col, int isLast)
 {
@@ -44,9 +44,4 @@ void rush(int col, int row)
         else WriteCol(col);
         i++;
     }
-}
-int main()
-{
-    rush(5, 0);
-    return 0;
 }
